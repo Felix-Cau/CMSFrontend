@@ -12,8 +12,16 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const storedToken = localStorage.getItem('authToken');
-        if (storedToken)
+        if (storedToken) {
             setToken(storedToken);
+        }
+        
+        
+        const storedAdminApiKey = localStorage.getItem('adminApiKey');
+        if (storedAdminApiKey) {
+            setIsAdmin(true);
+            setAdminApiKey(storedAdminApiKey);
+        }
 
         setLoading(false);
     }, [])
@@ -26,11 +34,12 @@ export const AuthProvider = ({ children }) => {
             body: JSON.stringify({firstName, lastName, email, password})
           });
 
-          const data = await res.json();
-
           if (res.status !== 201)
           {
+            const data = await res.json();
             setErrorMessage(data.message);
+            console.log(data.message);
+            console.log("jag är här");
             return false;
           }
 
@@ -50,15 +59,19 @@ export const AuthProvider = ({ children }) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({email, password})
             });
-            
-            const data = await res.json();
 
             if (res.status === 200)
             {
+              const data = await res.json();
               setToken(data.token);
               localStorage.setItem('authToken', data.token)
-              setIsAdmin(data.isAdmin);
-              setAdminApiKey(data.adminApiKey);
+
+              if (data.isAdmin === true)
+              {
+                  setIsAdmin(data.isAdmin);
+                  setAdminApiKey(data.adminApiKey);
+                  localStorage.setItem('adminApiKey', data.adminApiKey)
+              }
               return true;
             }
 
@@ -81,6 +94,7 @@ export const AuthProvider = ({ children }) => {
             setIsAdmin(false);
             setAdminApiKey(null);
             localStorage.removeItem('authToken');
+            localStorage.removeItem('adminApiKey');
         }
     }
 

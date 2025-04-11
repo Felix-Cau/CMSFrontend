@@ -63,6 +63,7 @@ function SignUp() {
     validateOnChange: false,
     onSubmit: async (values) => {
       const succeeded = await signUp(values.firstName, values.lastName, values.email, values.password);
+      console.log(succeeded);
       if (succeeded)
         navigate("/signin");
       else
@@ -77,27 +78,27 @@ function SignUp() {
         <form onSubmit={formik.handleSubmit}>
           <div>
             <label htmlFor='firstName'>First Name</label>
-            <input type='text' id='firstName' value={formik.values.firstName} onChange={formik.handleChange} placeholder='Enter your first name'/>
+            <input type='text' id='firstName' value={formik.values.firstName.trim()} onChange={formik.handleChange} placeholder='Enter your first name'/>
             {formik.errors.firstName ? (<div className='error'>{formik.errors.firstName}</div>) : null}
           </div>
           <div>
             <label htmlFor='lastName'>Last Name</label>
-            <input type='text' id='lastName' value={formik.values.lastName} onChange={formik.handleChange} placeholder='Enter your last name' />
+            <input type='text' id='lastName' value={formik.values.lastName.trim()} onChange={formik.handleChange} placeholder='Enter your last name' />
             {formik.errors.lastName ? (<div className='error'>{formik.errors.lastName}</div>) : null}
           </div>
           <div>
             <label htmlFor='email'>Email</label>
-            <input type='text' id='email' value={formik.values.email} onChange={formik.handleChange} placeholder='Enter your email address'/>
+            <input type='text' id='email' value={formik.values.email.trim()} onChange={formik.handleChange} placeholder='Enter your email address'/>
             {formik.errors.email ? (<div className='error'>{formik.errors.email}</div>) : null}
           </div>
           <div>
             <label htmlFor='password' id='password'>Password</label>
-            <input type='text' id='password' value={formik.values.password} onChange={formik.handleChange} placeholder='Enter your password'/>
+            <input type='text' id='password' value={formik.values.password.trim()} onChange={formik.handleChange} placeholder='Enter your password'/>
             {formik.errors.password ? (<div className='error'>{formik.errors.password}</div>) : null}
           </div>
           <div>
             <label htmlFor='confirmPassword' id='confirmPassword'>Password</label>
-            <input type='text' id='confirmPassword' value={formik.values.confirmPassword} onChange={formik.handleChange} placeholder='Confirm your password'/>
+            <input type='text' id='confirmPassword' value={formik.values.confirmPassword.trim()} onChange={formik.handleChange} placeholder='Confirm your password'/>
             {formik.errors.confirmPassword ? (<div className='error'>{formik.errors.confirmPassword}</div>) : null}
           </div>
           <div className='checkbox'>

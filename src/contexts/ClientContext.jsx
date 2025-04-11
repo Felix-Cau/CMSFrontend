@@ -19,9 +19,8 @@ export const ClientProvider = ({children}) => {
                 }
             })
 
-            const data = await res.json()
-    
             if (res.status === 200) {
+                const data = await res.json()
                 setClients(data)
                 return true;
             }
@@ -42,10 +41,9 @@ export const ClientProvider = ({children}) => {
                     'Authorization': `Bearer ${token}`
                 }
             }) 
-
-            const data = await res.json()
-
+            
             if (res.status === 200) {
+                const data = await res.json()
                 setClient(data)
                 return true;
             }
@@ -135,10 +133,6 @@ export const ClientProvider = ({children}) => {
             return false;
         }
     }
-
-    useEffect(() => {
-        getClients()
-    }, [])
 
     return (
         <ClientContext.Provider value={{clients, client, getClients, getClient, createClient, updateClient, deleteClient}}>

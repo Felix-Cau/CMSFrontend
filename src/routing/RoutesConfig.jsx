@@ -8,7 +8,7 @@ import CenterScreenLayout from '../pages/layouts/CenterScreenLayout'
 import SignUp from '../pages/SignUp'
 import SignIn from '../pages/SignIn'
 import Projects from '../pages/Projects'
-import Members from '../pages/Members'
+import Users from '../pages/Users'
 import Clients from '../pages/Clients'
 
 const routesConfig = [
@@ -28,7 +28,7 @@ const routesConfig = [
     ),
     children: [
       { path: "/projects", element: <Projects /> },
-      { path: "/members", element: <AdminRoute><Members /></AdminRoute> },
+      { path: "/users", element: <AdminRoute><Users /></AdminRoute> },
       { path: "/clients", element: <AdminRoute><Clients /></AdminRoute> },
       { path: "*", element: <Navigate to="/admin/projects" replace /> }
     ]

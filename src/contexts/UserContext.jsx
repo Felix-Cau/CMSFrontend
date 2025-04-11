@@ -41,10 +41,9 @@ export const UserProvider = ({children}) => {
                     'Authorization': `Bearer ${token}`
                 }
             }) 
-
-            const data = await res.json()
-
+            
             if (res.status === 200) {
+                const data = await res.json()
                 setUser(data)
                 return true;
             }
@@ -134,10 +133,6 @@ export const UserProvider = ({children}) => {
             return false;
         }
     }
-
-    useEffect(() => {
-        getUsers()
-    }, [])
 
     return (
         <UserContext.Provider value={{users, user, getUsers, getUser, createUser, updateUser, deleteUser}}>

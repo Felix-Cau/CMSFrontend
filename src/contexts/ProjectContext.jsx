@@ -22,14 +22,13 @@ export const ProjectProvider = ({children}) => {
                 body: formData
             });
 
-            const data = await res.json();
-
             if (res.status !== 201)
                 {
-                  setErrorMessage('Unexpected error occured');
-                  return false;
+                    setErrorMessage('Unexpected error occured');
+                    return false;
                 }
-      
+                
+                const data = await res.json();
                 await getProjects();
                 return true;
       
@@ -49,10 +48,10 @@ export const ProjectProvider = ({children}) => {
                 }
             })
 
-            const data = await res.json()
-    
+            
             if (res.status === 200) 
                 {
+                    const data = await res.json()
                     setProjects(data)
                     return true;
                 }
@@ -74,11 +73,10 @@ export const ProjectProvider = ({children}) => {
                     'Authorization': `Bearer ${token}`
                 }
             })
-
-            const data = await res.json();
-
+            
             if (res.status === 200)
-            {
+                {
+                const data = await res.json();
                 setProject(data)
                 return true;
             }
@@ -101,15 +99,14 @@ export const ProjectProvider = ({children}) => {
                 },
                 body: formData
             });
-
-            const data = await res.json();
-
+            
             if (res.status !== 200)
-            {
-                setErrorMessage('Unexpected error occurred');
-                return false;
-            }
-
+                {
+                    setErrorMessage('Unexpected error occurred');
+                    return false;
+                }
+                
+            const data = await res.json();
             await getProjects();
             return true;
         }
@@ -117,7 +114,6 @@ export const ProjectProvider = ({children}) => {
             console.error(error);
             return false;
         }
-
     }
 
     const deleteProject = async (id) => {
@@ -128,15 +124,14 @@ export const ProjectProvider = ({children}) => {
                     'Authorization': `Bearer ${token}`
                 }
             })
-
-            const data = await res.json();
             
             if (res.status !== 200)
-            {
-                setErrorMessage('Unexpected error occured');
-                return false;
-            }
-
+                {
+                    setErrorMessage('Unexpected error occured');
+                    return false;
+                }
+                
+            const data = await res.json();
             await getProjects();
             return true;
         }
@@ -155,15 +150,14 @@ export const ProjectProvider = ({children}) => {
                     'Authorization': `Bearer ${token}`
                 }
             })
-
-            const data = await res.json();
-
+            
             if (res.status !== 200)
-            {
-                setErrorMessage('Unexpected error occured');
-                return false;
-            }
-
+                {
+                    setErrorMessage('Unexpected error occured');
+                    return false;
+                }
+                
+            const data = await res.json();
             setStatuses(data);
             return true;
 
@@ -172,11 +166,6 @@ export const ProjectProvider = ({children}) => {
             return false;
         }
     }
-
-    useEffect(() => {
-        getProjects();
-        getStatuses();
-    }, [])
 
     return (
         <ProjectContext.Provider value={{projects, project, statuses, createProject, getProjects, getProject, updateProject, deleteProject, getStatuses}}>
