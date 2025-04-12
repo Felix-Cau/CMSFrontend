@@ -3,7 +3,7 @@ import ModalButton from '../partials/components/ModalButton';
 import {useProj} from '../contexts/ProjectContext';
 
 const Projects = () => {
-  const {projects, getProjects} = useProj();
+  const {projects, getProjects, deleteProject} = useProj();
 
   const [showDropdownMenu, setDropDown] = useState(false);
   
@@ -16,6 +16,7 @@ const Projects = () => {
     }
   
     const handleDelete = ({project}) => {
+      deleteProject(project.id);
     }
 
   useEffect(() => {

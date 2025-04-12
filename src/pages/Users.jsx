@@ -1,53 +1,63 @@
-import React, { useEffect, useState } from 'react';
-import ModalButton from '../partials/components/ModalButton';
-import {useUser} from '../contexts/UserContext';
+import React, { useEffect, useState } from "react";
+import ModalButton from "../partials/components/ModalButton";
+import AddMemberModal from "../partials/components/AddMemberModal";
+import EditMemberModal from "../partials/components/EditMemberModal";
+import { useUser } from "../contexts/UserContext";
 
 const Users = () => {
-  const {users, getUsers, deleteUser} = useUser();
+  const { users, getUsers, createUser, updateUser, deleteUser } = useUser();
 
   const [showDropdownMenu, setDropDown] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   const toggleDropdown = () => {
     setDropDown((prev) => !prev);
-  }
+  };
 
-  const handleEdit = ({user}) => {
+  const handleAdd = (formData) => {
+    createUser(formData);
+  };
 
-  }
+  const handleEdit = ({ user }) => {
+    setSelectedUser(user);
+    setIsEditModalOpen(true);
+  };
 
-  const handleDelete = ({user}) => {
-    deleteUser(user.id)
-  }
+  const handleDelete = ({ user }) => {
+    deleteUser(user.id);
+  };
 
   useEffect(() => {
     getUsers();
-  }, [])
+  }, []);
 
   return (
     <div id="members">
       <div className="page-header">
         <h1 className="h2">Team Members</h1>
-        <ModalButton type="add" target="#addMemberModal" text="Add User" />
+        <ModalButton type="add" target="#addMemberModal" text="Add User" onClick={() => setIsAddModalOpen(true)} />
       </div>
 
       <div>
         {users.length > 0 ? (
-          users.map(user => (
+          users.map((user) => (
             <div key={user.id}>
               <button type="button" onClick={toggleDropdown}>
                 test
               </button>
               {showDropdownMenu && (
                 <div>
-                    <button onClick={() => handleEdit({user})}>
-                      Edit
+                  <button onClick={() => handleEdit({ user })}>
+                    Edit
                     </button>
-                    <button onClick={() => handleDelete({user})}>
-                      Delete User
-                    </button>
+                  <button onClick={() => handleDelete({ user })}>
+                    Delete User
+                  </button>
                 </div>
               )}
-              <img src={user.imageName} /> 
+              <img src={user.imageName} />
               <h2>{user.name}</h2>
               <p>{user.jobTitle}</p>
               <p>{user.email}</p>
@@ -59,8 +69,22 @@ const Users = () => {
           <p>No projects found.</p>
         )}
       </div>
-    </div>
-  )
-}
 
-export default Users
+      <AddMemberModal
+        id="addMemberModal"
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onSubmit={handleAdd}
+      />
+
+      <EditMemberModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        onSubmit={handleEdit}
+        userData={selectedUser}
+      />
+    </div>
+  );
+};
+
+export default Users;
