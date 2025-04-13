@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const AddClientModal = ({ isOpen, onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
@@ -63,7 +63,7 @@ const AddClientModal = ({ isOpen, onClose, onSubmit }) => {
               />
             </div>
             <div>
-              <label htmlFor="clientEmail">Client Email</label>
+              <label htmlFor="clientEmail">Email</label>
               <input
                 type="text"
                 id="clientEmail"
@@ -75,7 +75,7 @@ const AddClientModal = ({ isOpen, onClose, onSubmit }) => {
               />
             </div>
             <div>
-              <label htmlFor="phoneNumber">Phone Number</label>
+              <label htmlFor="phoneNumber">Phone</label>
               <input
                 type="text"
                 id="phoneNumber"
@@ -86,7 +86,7 @@ const AddClientModal = ({ isOpen, onClose, onSubmit }) => {
               />
             </div>
             <div>
-              <label htmlFor="address">Address</label>
+              <label htmlFor="address">Billing Address</label>
               <input
                 type="text"
                 id="address"
@@ -98,7 +98,7 @@ const AddClientModal = ({ isOpen, onClose, onSubmit }) => {
               />
             </div>
             <div>
-              <label htmlFor="postalCode">Postal Code</label>
+              <label htmlFor="postalCode"> Billing Postal Code</label>
               <input
                 type="text"
                 id="postalCode"
@@ -110,7 +110,7 @@ const AddClientModal = ({ isOpen, onClose, onSubmit }) => {
               />
             </div>
             <div>
-              <label htmlFor="city">City</label>
+              <label htmlFor="city">Billing City</label>
               <input
                 type="text"
                 id="city"
@@ -122,7 +122,7 @@ const AddClientModal = ({ isOpen, onClose, onSubmit }) => {
               />
             </div>
             <div>
-              <label htmlFor="reference">Reference</label>
+              <label htmlFor="reference">Billing Reference</label>
               <input
                 type="text"
                 id="reference"

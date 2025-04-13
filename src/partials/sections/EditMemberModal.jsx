@@ -103,17 +103,6 @@ const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
               />
             </div>
             <div>
-              <label htmlFor="jobTitle">Job Title</label>
-              <input
-                type="text"
-                id="jobTitle"
-                name="JobTitle"
-                placeholder="Job Title"
-                value={formData.JobTitle}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
               <label htmlFor="phoneNumber">Phone Number</label>
               <input
                 type="text"
@@ -125,7 +114,18 @@ const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
               />
             </div>
             <div>
-              <label htmlFor="role">Role</label>
+              <label htmlFor="jobTitle">Job Title</label>
+              <input
+                type="text"
+                id="jobTitle"
+                name="JobTitle"
+                placeholder="Job Title"
+                value={formData.JobTitle}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="role">Member Role</label>
               <select
                 id="role"
                 name="Role"

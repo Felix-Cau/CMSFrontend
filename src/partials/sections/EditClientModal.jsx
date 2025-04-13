@@ -82,7 +82,7 @@ const EditClientModal = ({ isOpen, onClose, onSubmit, clientData }) => {
               />
             </div>
             <div>
-              <label htmlFor="clientEmail">Client Email</label>
+              <label htmlFor="clientEmail">Email</label>
               <input
                 type="text"
                 id="clientEmail"
@@ -94,7 +94,7 @@ const EditClientModal = ({ isOpen, onClose, onSubmit, clientData }) => {
               />
             </div>
             <div>
-              <label htmlFor="phoneNumber">Phone Number</label>
+              <label htmlFor="phoneNumber">Phone</label>
               <input
                 type="text"
                 id="phoneNumber"
@@ -105,7 +105,7 @@ const EditClientModal = ({ isOpen, onClose, onSubmit, clientData }) => {
               />
             </div>
             <div>
-              <label htmlFor="address">Address</label>
+              <label htmlFor="address">Billing Address</label>
               <input
                 type="text"
                 id="address"
@@ -117,7 +117,7 @@ const EditClientModal = ({ isOpen, onClose, onSubmit, clientData }) => {
               />
             </div>
             <div>
-              <label htmlFor="postalCode">Postal Code</label>
+              <label htmlFor="postalCode">Billing Postal Code</label>
               <input
                 type="text"
                 id="postalCode"
@@ -129,7 +129,7 @@ const EditClientModal = ({ isOpen, onClose, onSubmit, clientData }) => {
               />
             </div>
             <div>
-              <label htmlFor="city">City</label>
+              <label htmlFor="city">Billing City</label>
               <input
                 type="text"
                 id="city"
@@ -141,7 +141,7 @@ const EditClientModal = ({ isOpen, onClose, onSubmit, clientData }) => {
               />
             </div>
             <div>
-              <label htmlFor="reference">Reference</label>
+              <label htmlFor="reference">Billing  Reference</label>
               <input
                 type="text"
                 id="reference"

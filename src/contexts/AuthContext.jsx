@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
     const [adminApiKey, setAdminApiKey] = useState(null);
+    const [user, setUser] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
 
     useEffect(() => {
@@ -64,7 +65,9 @@ export const AuthProvider = ({ children }) => {
             {
               const data = await res.json();
               setToken(data.token);
+              setUser(data.user);
               localStorage.setItem('authToken', data.token)
+              localStorage.setItem('user', data.user)
 
               if (data.isAdmin === true)
               {
@@ -93,8 +96,10 @@ export const AuthProvider = ({ children }) => {
             setToken(null);
             setIsAdmin(false);
             setAdminApiKey(null);
+            setUser(null);
             localStorage.removeItem('authToken');
             localStorage.removeItem('adminApiKey');
+            localStorage.removeItem('user');
         }
     }
 

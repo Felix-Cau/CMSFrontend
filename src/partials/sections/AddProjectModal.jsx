@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useClients, getClients } from "../../contexts/ClientContext";
+import { useClients } from "../../contexts/ClientContext";
 import { useUser } from "../../contexts/UserContext";
 
 const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
@@ -73,7 +73,7 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
               />
             </div>
             <div>
-              <label htmlFor="clientId">Client ID</label>
+              <label htmlFor="clientId">Client Name</label>
               <select
                 id="clientId"
                 name="ClientId"
@@ -120,7 +120,7 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
               />
             </div>
             <div>
-              <label htmlFor="projectOwnerId">Project Owner ID</label>
+              <label htmlFor="projectOwnerId">Project Owner</label>
               <select
                 id="projectOwnerId"
                 name="ProjectOwnerId"

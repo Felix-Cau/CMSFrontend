@@ -98,7 +98,7 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
               />
             </div>
             <div>
-              <label htmlFor="clientId">Client ID</label>
+              <label htmlFor="clientId">Client Name</label>
               <select
                 id="clientId"
                 name="ClientId"
@@ -145,7 +145,7 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
               />
             </div>
             <div>
-              <label htmlFor="projectOwnerId">Project Owner ID</label>
+              <label htmlFor="projectOwnerId">Project Owner</label>
               <select
                 id="projectOwnerId"
                 name="ProjectOwnerId"
@@ -173,7 +173,7 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
               />
             </div>
             <div>
-              <label htmlFor="statusId">Status</label>
+              <label htmlFor="statusId">Project Status</label>
               <select
                 id="statusId"
                 name="StatusId"

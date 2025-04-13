@@ -85,7 +85,7 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
               />
             </div>
             <div>
-              <label htmlFor="phoneNumber">Phone Number</label>
+              <label htmlFor="phoneNumber">Phone</label>
               <input
                 id="phoneNumber"
                 type="text"
