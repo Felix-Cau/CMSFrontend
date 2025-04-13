@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
     const [adminApiKey, setAdminApiKey] = useState(null);
-    const [user, setUser] = useState(null);
+    const [loggedInUser, setLoggedInUser] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
 
     useEffect(() => {
@@ -22,6 +22,11 @@ export const AuthProvider = ({ children }) => {
         if (storedAdminApiKey) {
             setIsAdmin(true);
             setAdminApiKey(storedAdminApiKey);
+        }
+
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setLoggedInUser(storedUser);
         }
 
         setLoading(false);
@@ -65,9 +70,9 @@ export const AuthProvider = ({ children }) => {
             {
               const data = await res.json();
               setToken(data.token);
-              setUser(data.user);
+              setLoggedInUser(data.result);
               localStorage.setItem('authToken', data.token)
-              localStorage.setItem('user', data.user)
+              localStorage.setItem('user', data.result)
 
               if (data.isAdmin === true)
               {
@@ -96,7 +101,7 @@ export const AuthProvider = ({ children }) => {
             setToken(null);
             setIsAdmin(false);
             setAdminApiKey(null);
-            setUser(null);
+            setLoggedInUser(null);
             localStorage.removeItem('authToken');
             localStorage.removeItem('adminApiKey');
             localStorage.removeItem('user');
@@ -112,7 +117,7 @@ export const AuthProvider = ({ children }) => {
     } 
 
     return (
-        <AuthContext.Provider value={{loading, token, isAdmin, adminApiKey, signUp, signIn, signOut, authFetch}}>
+        <AuthContext.Provider value={{loading, token, isAdmin, adminApiKey, loggedInUser, signUp, signIn, signOut, authFetch}}>
             {children}
         </AuthContext.Provider>
     )
