@@ -37,7 +37,7 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
       <div className="modal" id="addMemberModal">
         <div className="modal-content">
           <button onClick={onClose}>Close</button>
-          <h2>Add User</h2>
+          <h2>Add Member</h2>
           <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email">Email</label>
@@ -46,7 +46,7 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
                 type="text"
                 name="Email"
                 placeholder="Email"
-                value={formData.Email.trim()}
+                value={formData.Email}
                 onChange={handleChange}
                 required
               />
@@ -67,7 +67,7 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
                 type="text"
                 name="FirstName"
                 placeholder="First Name"
-                value={formData.FirstName.trim()}
+                value={formData.FirstName}
                 onChange={handleChange}
                 required
               />
@@ -79,7 +79,7 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
                 type="text"
                 name="LastName"
                 placeholder="Last Name"
-                value={formData.LastName.trim()}
+                value={formData.LastName}
                 onChange={handleChange}
                 required
               />
@@ -91,7 +91,7 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
                 type="text"
                 name="PhoneNumber"
                 placeholder="Phone Number"
-                value={formData.PhoneNumber.trim()}
+                value={formData.PhoneNumber}
                 onChange={handleChange}
               />
             </div>
@@ -102,7 +102,7 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
                 type="text"
                 name="JobTitle"
                 placeholder="Job Title"
-                value={formData.JobTitle.trim()}
+                value={formData.JobTitle}
                 onChange={handleChange}
               />
             </div>
@@ -126,7 +126,7 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
                 type="text"
                 name="Address"
                 placeholder="Address"
-                value={formData.Address.trim()}
+                value={formData.Address}
                 onChange={handleChange}
               />
             </div>

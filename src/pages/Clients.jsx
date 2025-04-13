@@ -1,27 +1,23 @@
-import React, { useEffect } from 'react'
-import ModalButton from '../partials/components/ModalButton'
-import { useClients } from '../contexts/ClientContext'
+import React, { useEffect } from "react";
+import ModalButton from "../partials/components/ModalButton";
+import { useClients } from "../contexts/ClientContext";
 
 const Clients = () => {
-  const {clients, getClients} = useClients();
+  const { clients, getClients } = useClients();
 
   const [showDropdownMenu, setDropDown] = useState(false);
-  
+
   const toggleDropdown = () => {
     setDropDown((prev) => !prev);
-  }
+  };
 
-  const handleEdit = ({client}) => {
+  const handleEdit = ({ client }) => {};
 
-  }
-
-  const handleDelete = ({client}) => {
-    
-  }
+  const handleDelete = ({ client }) => {};
 
   useEffect(() => {
     getClients();
-  }, [])
+  }, []);
 
   return (
     <div id="clients">
@@ -42,27 +38,27 @@ const Clients = () => {
             </tr>
           </thead>
           <tbody>
-            {clients.map(client => (
+            {clients.map((client) => (
               <tr key={client.id}>
                 <td>
                   <div>{client.clientName}</div>
                   <div>{client.email}</div>
                 </td>
-                <td>{client.phone || 'Not available'}</td>
+                <td>{client.phone || "Not available"}</td>
                 {/* ChatGPT generated */}
                 <td>{new Date(client.created).toLocaleDateString()}</td>
-                <td>{client.isActive ? 'Active' : 'Inactive'}</td>
+                <td>{client.isActive ? "Active" : "Inactive"}</td>
                 <td></td>
                 <td>
                   <button type="button" onClick={toggleDropdown}>
-                  test
+                    test
                   </button>
                   {showDropdownMenu && (
                     <div>
-                      <button onClick={() => handleEdit({client})}>
+                      <button onClick={() => handleEdit({ client })}>
                         Edit
                       </button>
-                      <button onClick={() => handleDelete({client})}>
+                      <button onClick={() => handleDelete({ client })}>
                         Delete User
                       </button>
                     </div>
@@ -76,7 +72,7 @@ const Clients = () => {
         <p>No clients found.</p>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Clients
+export default Clients;

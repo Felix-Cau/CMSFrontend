@@ -37,7 +37,12 @@ const Users = () => {
     <div id="members">
       <div className="page-header">
         <h1 className="h2">Team Members</h1>
-        <ModalButton type="add" target="#addMemberModal" text="Add User" onClick={() => setIsAddModalOpen(true)} />
+        <ModalButton
+          type="add"
+          target="#addMemberModal"
+          text="Add User"
+          onClick={() => setIsAddModalOpen(true)}
+        />
       </div>
 
       <div>
@@ -49,9 +54,7 @@ const Users = () => {
               </button>
               {showDropdownMenu && (
                 <div>
-                  <button onClick={() => handleEdit({ user })}>
-                    Edit
-                    </button>
+                  <button onClick={() => handleEdit({ user })}>Edit</button>
                   <button onClick={() => handleDelete({ user })}>
                     Delete User
                   </button>

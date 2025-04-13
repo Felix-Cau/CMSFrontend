@@ -1,27 +1,25 @@
-import React, { useEffect } from 'react';
-import ModalButton from '../partials/components/ModalButton';
-import {useProj} from '../contexts/ProjectContext';
+import React, { useEffect } from "react";
+import ModalButton from "../partials/components/ModalButton";
+import { useProj } from "../contexts/ProjectContext";
 
 const Projects = () => {
-  const {projects, getProjects, deleteProject} = useProj();
+  const { projects, getProjects, deleteProject } = useProj();
 
   const [showDropdownMenu, setDropDown] = useState(false);
-  
-    const toggleDropdown = () => {
-      setDropDown((prev) => !prev);
-    }
-  
-    const handleEdit = ({project}) => {
-  
-    }
-  
-    const handleDelete = ({project}) => {
-      deleteProject(project.id);
-    }
+
+  const toggleDropdown = () => {
+    setDropDown((prev) => !prev);
+  };
+
+  const handleEdit = ({ project }) => {};
+
+  const handleDelete = ({ project }) => {
+    deleteProject(project.id);
+  };
 
   useEffect(() => {
     getProjects();
-  }, [])
+  }, []);
 
   return (
     <div id="projects">
@@ -32,7 +30,7 @@ const Projects = () => {
 
       <div>
         {projects.length > 0 ? (
-          projects.map(project => (
+          projects.map((project) => (
             <div key={project.id}>
               <h2>{project.projectName}</h2>
               <button type="button" onClick={toggleDropdown}>
@@ -40,12 +38,10 @@ const Projects = () => {
               </button>
               {showDropdownMenu && (
                 <div>
-                    <button onClick={() => handleEdit({project})}>
-                      Edit
-                    </button>
-                    <button onClick={() => handleDelete({project})}>
-                      Delete User
-                    </button>
+                  <button onClick={() => handleEdit({ project })}>Edit</button>
+                  <button onClick={() => handleDelete({ project })}>
+                    Delete User
+                  </button>
                 </div>
               )}
               <p>{project.description}</p>
@@ -57,9 +53,8 @@ const Projects = () => {
           <p>No projects found.</p>
         )}
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;
