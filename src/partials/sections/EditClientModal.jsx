@@ -1,48 +1,44 @@
 import React, { useState, useEffect } from "react";
 
-const EditClientModal = ({ isOpen, onClose, onSubmit, clientData }) => {
+//After creating Add & Edit Member modals i asked ChatGPT for creating a similar ones for the rest. I then checked and changed what was needed to make sure it is ok.
+
+const EditClientModal = ({ onClose, onSubmit, clientData }) => {
   const [formData, setFormData] = useState({
-    Id: "",
-    ImageName: "",
-    NewImageFile: null,
-    ClientName: "",
-    ClientEmail: "",
-    PhoneNumber: "",
-    Address: "",
-    PostalCode: "",
-    City: "",
-    Reference: "",
+    id: "",
+    imageName: "",
+    imageFile: null,
+    clientName: "",
+    email: "",
+    phone: "",
+    address: "",
+    postalCode: "",
+    city: "",
+    reference: "",
   });
 
   useEffect(() => {
     if (clientData) {
       setFormData({
-        Id: clientData.id,
-        ImageName: clientData.imageName || "",
-        NewImageFile: null,
-        ClientName: clientData.clientName || "",
-        ClientEmail: clientData.clientEmail || "",
-        PhoneNumber: clientData.phoneNumber || "",
-        Address: clientData.address || "",
-        PostalCode: clientData.postalCode || "",
-        City: clientData.city || "",
-        Reference: clientData.reference || "",
+        id: clientData.id,
+        imageName: clientData.imageName || "",
+        imageFile: null,
+        clientName: clientData.clientName || "",
+        email: clientData.email || "",
+        phone: clientData.phone || "",
+        address: clientData.address || "",
+        postalCode: clientData.postalCode || "",
+        city: clientData.city || "",
+        reference: clientData.reference || "",
       });
     }
-  }, [userData]);
+  }, [clientData]);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleFileChange = (e) => {
-    setFormData({
-      ...formData,
-      NewImageFile: e.target.files[0],
-    });
+    setFormData({ ...formData, imageFile: e.target.files[0] });
   };
 
   const handleSubmit = (e) => {
@@ -50,8 +46,6 @@ const EditClientModal = ({ isOpen, onClose, onSubmit, clientData }) => {
     onSubmit(formData);
     onClose();
   };
-
-  if (!isOpen) return null;
 
   return (
     <section>
@@ -61,11 +55,11 @@ const EditClientModal = ({ isOpen, onClose, onSubmit, clientData }) => {
           <h2>Edit Client</h2>
           <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="newImageFile">New Image File</label>
+              <label htmlFor="imageFile">Image File</label>
               <input
                 type="file"
-                id="newImageFile"
-                name="NewImageFile"
+                id="imageFile"
+                name="imageFile"
                 onChange={handleFileChange}
               />
             </div>
@@ -74,9 +68,9 @@ const EditClientModal = ({ isOpen, onClose, onSubmit, clientData }) => {
               <input
                 type="text"
                 id="clientName"
-                name="ClientName"
+                name="clientName"
                 placeholder="Client Name"
-                value={formData.ClientName}
+                value={formData.clientName}
                 onChange={handleChange}
                 required
               />
@@ -86,68 +80,68 @@ const EditClientModal = ({ isOpen, onClose, onSubmit, clientData }) => {
               <input
                 type="text"
                 id="clientEmail"
-                name="ClientEmail"
+                name="clientEmail"
                 placeholder="Client Email"
-                value={formData.ClientEmail}
+                value={formData.email}
                 onChange={handleChange}
                 required
               />
             </div>
             <div>
-              <label htmlFor="phoneNumber">Phone</label>
+              <label htmlFor="phoneNumber">Phone Number</label>
               <input
                 type="text"
                 id="phoneNumber"
-                name="PhoneNumber"
+                name="phoneNumber"
                 placeholder="Phone Number"
-                value={formData.PhoneNumber}
+                value={formData.phone}
                 onChange={handleChange}
               />
             </div>
             <div>
-              <label htmlFor="address">Billing Address</label>
+              <label htmlFor="address">Address</label>
               <input
                 type="text"
                 id="address"
-                name="Address"
+                name="address"
                 placeholder="Address"
-                value={formData.Address}
+                value={formData.address}
                 onChange={handleChange}
                 required
               />
             </div>
             <div>
-              <label htmlFor="postalCode">Billing Postal Code</label>
+              <label htmlFor="postalCode">Postal Code</label>
               <input
                 type="text"
                 id="postalCode"
-                name="PostalCode"
+                name="postalCode"
                 placeholder="Postal Code"
-                value={formData.PostalCode}
+                value={formData.postalCode}
                 onChange={handleChange}
                 required
               />
             </div>
             <div>
-              <label htmlFor="city">Billing City</label>
+              <label htmlFor="city">City</label>
               <input
                 type="text"
                 id="city"
-                name="City"
+                name="city"
                 placeholder="City"
-                value={formData.City}
+                value={formData.city}
                 onChange={handleChange}
                 required
               />
             </div>
             <div>
-              <label htmlFor="reference">Billing  Reference</label>
+              <label htmlFor="reference">Reference</label>
               <input
                 type="text"
                 id="reference"
-                name="Reference"
+                name="reference"
                 placeholder="Reference"
-                value={formData.Reference}
+                value={formData.reference}
                 onChange={handleChange}
               />
             </div>

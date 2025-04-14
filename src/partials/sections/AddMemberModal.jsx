@@ -1,27 +1,25 @@
 import React, { useState } from "react";
 
-const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
+const AddMemberModal = ({ onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
-    Email: "",
-    ImageFile: null,
-    FirstName: "",
-    LastName: "",
-    PhoneNumber: "",
-    JobTitle: "",
-    Role: "",
-    Address: "",
-    PostalCode: "",
-    City: "",
+    imageFile: null,
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    jobTitle: "",
+    role: "",
+    address: "",
+    postalCode: "",
+    city: "",
   });
 
-  //AI generated
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  //AI generated
   const handleFileChange = (e) => {
-    setFormData({ ...formData, ImageFile: e.target.files[0] });
+    setFormData({ ...formData, imageFile: e.target.files[0] });
   };
 
   const handleSubmit = (e) => {
@@ -29,8 +27,6 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
     onSubmit(formData);
     onClose();
   };
-
-  if (!isOpen) return null;
 
   return (
     <section>
@@ -40,23 +36,11 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
           <h2>Add Member</h2>
           <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="email">Email</label>
-              <input
-                id="email"
-                type="text"
-                name="Email"
-                placeholder="Email"
-                value={formData.Email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div>
               <label htmlFor="imageFile">Profile Image</label>
               <input
                 id="imageFile"
                 type="file"
-                name="ImageFile"
+                name="imageFile"
                 onChange={handleFileChange}
               />
             </div>
@@ -65,9 +49,9 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 id="firstName"
                 type="text"
-                name="FirstName"
+                name="firstName"
                 placeholder="First Name"
-                value={formData.FirstName}
+                value={formData.firstName}
                 onChange={handleChange}
                 required
               />
@@ -77,9 +61,21 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 id="lastName"
                 type="text"
-                name="LastName"
+                name="lastName"
                 placeholder="Last Name"
-                value={formData.LastName}
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                type="text"
+                name="imail"
+                placeholder="Email"
+                value={formData.email}
                 onChange={handleChange}
                 required
               />
@@ -89,9 +85,9 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 id="phoneNumber"
                 type="text"
-                name="PhoneNumber"
+                name="phoneNumber"
                 placeholder="Phone Number"
-                value={formData.PhoneNumber}
+                value={formData.phoneNumber}
                 onChange={handleChange}
               />
             </div>
@@ -100,9 +96,9 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 id="jobTitle"
                 type="text"
-                name="JobTitle"
+                name="jobTitle"
                 placeholder="Job Title"
-                value={formData.JobTitle}
+                value={formData.jobTitle}
                 onChange={handleChange}
               />
             </div>
@@ -110,8 +106,8 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
               <label htmlFor="role">Role</label>
               <select
                 id="role"
-                name="Role"
-                value={formData.Role}
+                name="role"
+                value={formData.role}
                 onChange={handleChange}
                 required>
                 <option value="">Select Role</option>
@@ -124,9 +120,9 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 id="address"
                 type="text"
-                name="Address"
+                name="address"
                 placeholder="Address"
-                value={formData.Address}
+                value={formData.address}
                 onChange={handleChange}
               />
             </div>
@@ -135,9 +131,9 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 id="postalCode"
                 type="text"
-                name="PostalCode"
+                name="postalCode"
                 placeholder="Postal Code"
-                value={formData.PostalCode}
+                value={formData.postalCode}
                 onChange={handleChange}
               />
             </div>
@@ -146,9 +142,9 @@ const AddMemberModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 id="city"
                 type="text"
-                name="City"
+                name="city"
                 placeholder="City"
-                value={formData.City}
+                value={formData.city}
                 onChange={handleChange}
               />
             </div>

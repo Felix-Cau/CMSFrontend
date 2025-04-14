@@ -3,21 +3,24 @@ import { useClients } from "../../contexts/ClientContext";
 import { useUser } from "../../contexts/UserContext";
 import { useProj } from "../../contexts/ProjectContext";
 
-const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
+//After creating Add & Edit Member modals i asked ChatGPT for creating a similar ones for the rest. I then checked and changed what was needed to make sure it is ok.
+//The date handling is only AI generated.
+
+const EditProjectModal = ({ onClose, onSubmit, projectData }) => {
   const { clients, getClients } = useClients();
   const { users, getUsers } = useUser();
   const { statuses, getStatuses } = useProj();
 
   const [formData, setFormData] = useState({
-    ImageFile: null,
-    ProjectName: "",
-    ClientId: "",
-    Description: "",
-    StartDate: "",
-    EndDate: "",
-    ProjectOwnerId: "",
-    Budget: "",
-    StatusId: "",
+    imageFile: null,
+    projectName: "",
+    clientId: "",
+    description: "",
+    startDate: "",
+    endDate: "",
+    projectOwnerId: "",
+    budget: "",
+    statusId: "",
   });
 
   useEffect(() => {
@@ -29,20 +32,19 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
   useEffect(() => {
     if (projectData) {
       setFormData({
-        ImageFile: null,
-        ProjectName: projectData.projectName || "",
-        ClientId: projectData.clientId || "",
-        Description: projectData.description || "",
-        //AI Generated.
-        StartDate: projectData.startDate
+        imageFile: null,
+        projectName: projectData.projectName || "",
+        clientId: projectData.clientId || "",
+        description: projectData.description || "",
+        startDate: projectData.startDate
           ? projectData.startDate.substring(0, 10)
           : "",
-        EndDate: projectData.endDate
+        endDate: projectData.endDate
           ? projectData.endDate.substring(0, 10)
           : "",
-        ProjectOwnerId: projectData.projectOwnerId || "",
-        Budget: projectData.budget ? projectData.budget.toString() : "",
-        StatusId: projectData.statusId ? projectData.statusId.toString() : "",
+        projectOwnerId: projectData.projectOwnerId || "",
+        budget: projectData.budget ? projectData.budget.toString() : "",
+        statusId: projectData.statusId ? projectData.statusId.toString() : "",
       });
     }
   }, [projectData]);
@@ -57,7 +59,7 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
   const handleFileChange = (e) => {
     setFormData({
       ...formData,
-      ImageFile: e.target.files[0],
+      imageFile: e.target.files[0],
     });
   };
 
@@ -66,8 +68,6 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
     onSubmit(formData);
     onClose();
   };
-
-  if (!isOpen) return null;
 
   return (
     <section>
@@ -81,7 +81,7 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
               <input
                 type="file"
                 id="imageFile"
-                name="ImageFile"
+                name="imageFile"
                 onChange={handleFileChange}
               />
             </div>
@@ -90,9 +90,9 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
               <input
                 type="text"
                 id="projectName"
-                name="ProjectName"
+                name="projectName"
                 placeholder="Project Name"
-                value={formData.ProjectName}
+                value={formData.projectName}
                 onChange={handleChange}
                 required
               />
@@ -101,10 +101,11 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
               <label htmlFor="clientId">Client Name</label>
               <select
                 id="clientId"
-                name="ClientId"
-                value={formData.ClientId}
+                name="clientId"
+                value={formData.clientId}
                 onChange={handleChange}
-                required>
+                required
+              >
                 <option value="">Select a client</option>
                 {clients.map((client) => (
                   <option key={client.id} value={client.id}>
@@ -117,9 +118,9 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
               <label htmlFor="description">Description</label>
               <textarea
                 id="description"
-                name="Description"
+                name="description"
                 placeholder="Description"
-                value={formData.Description}
+                value={formData.description}
                 onChange={handleChange}
               />
             </div>
@@ -128,8 +129,8 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
               <input
                 type="date"
                 id="startDate"
-                name="StartDate"
-                value={formData.StartDate}
+                name="startDate"
+                value={formData.startDate}
                 onChange={handleChange}
                 required
               />
@@ -139,8 +140,8 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
               <input
                 type="date"
                 id="endDate"
-                name="EndDate"
-                value={formData.EndDate}
+                name="endDate"
+                value={formData.endDate}
                 onChange={handleChange}
               />
             </div>
@@ -148,14 +149,15 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
               <label htmlFor="projectOwnerId">Project Owner</label>
               <select
                 id="projectOwnerId"
-                name="ProjectOwnerId"
-                value={formData.ProjectOwnerId}
+                name="projectOwnerId"
+                value={formData.projectOwnerId}
                 onChange={handleChange}
-                required>
+                required
+              >
                 <option value="">Select a project owner</option>
                 {users.map((user) => (
                   <option key={user.id} value={user.id}>
-                    {user.Name}
+                    {user.name}
                   </option>
                 ))}
               </select>
@@ -165,9 +167,9 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
               <input
                 type="number"
                 id="budget"
-                name="Budget"
+                name="budget"
                 placeholder="Budget"
-                value={formData.Budget}
+                value={formData.budget}
                 onChange={handleChange}
                 step="0.01"
               />
@@ -176,10 +178,11 @@ const EditProjectModal = ({ isOpen, onClose, onSubmit, projectData }) => {
               <label htmlFor="statusId">Project Status</label>
               <select
                 id="statusId"
-                name="StatusId"
-                value={formData.StatusId}
+                name="statusId"
+                value={formData.statusId}
                 onChange={handleChange}
-                required>
+                required
+              >
                 <option value="">Select a status</option>
                 {statuses.map((status) => (
                   <option key={status.id} value={status.id}>

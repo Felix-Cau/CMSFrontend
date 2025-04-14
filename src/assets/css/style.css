@@ -561,7 +561,7 @@ a {
 /* modals */
 .modal {
     background-color: var(--modal-screen-background-color);
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -712,7 +712,11 @@ section > .content {
     }
 
 /* custom modals */
-#addClientModal .modal-content {
+#addModal .modal-content {
+    width: 450px;
+}
+
+#editModal .modal-content {
     width: 450px;
 }
 

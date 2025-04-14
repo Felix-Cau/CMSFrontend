@@ -1,29 +1,25 @@
 import React, { useState } from "react";
 
-const AddClientModal = ({ isOpen, onClose, onSubmit }) => {
+//After creating Add & Edit Member modals i asked ChatGPT for creating a similar ones for the rest. I then checked and changed what was needed to make sure it is ok.
+
+const AddClientModal = ({ onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
-    ImageFile: null,
-    ClientName: "",
-    ClientEmail: "",
-    PhoneNumber: "",
-    Address: "",
-    PostalCode: "",
-    City: "",
-    Reference: "",
+    imageFile: null,
+    clientName: "",
+    clientEmail: "",
+    phone: "",
+    address: "",
+    postalCode: "",
+    city: "",
+    reference: "",
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleFileChange = (e) => {
-    setFormData({
-      ...formData,
-      ImageFile: e.target.files[0],
-    });
+    setFormData({ ...formData, imageFile: e.target.files[0] });
   };
 
   const handleSubmit = (e) => {
@@ -31,8 +27,6 @@ const AddClientModal = ({ isOpen, onClose, onSubmit }) => {
     onSubmit(formData);
     onClose();
   };
-
-  if (!isOpen) return null;
 
   return (
     <section>
@@ -42,11 +36,11 @@ const AddClientModal = ({ isOpen, onClose, onSubmit }) => {
           <h2>Add Client</h2>
           <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="imageFile">Image File</label>
+              <label htmlFor="imageFile">Profile Image</label>
               <input
                 type="file"
                 id="imageFile"
-                name="ImageFile"
+                name="imageFile"
                 onChange={handleFileChange}
               />
             </div>
@@ -55,9 +49,9 @@ const AddClientModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 type="text"
                 id="clientName"
-                name="ClientName"
+                name="clientName"
                 placeholder="Client Name"
-                value={formData.ClientName}
+                value={formData.clientName}
                 onChange={handleChange}
                 required
               />
@@ -67,9 +61,9 @@ const AddClientModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 type="text"
                 id="clientEmail"
-                name="ClientEmail"
-                placeholder="Client Email"
-                value={formData.ClientEmail}
+                name="clientEmail"
+                placeholder="Email"
+                value={formData.clientEmail}
                 onChange={handleChange}
                 required
               />
@@ -79,56 +73,56 @@ const AddClientModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 type="text"
                 id="phoneNumber"
-                name="PhoneNumber"
+                name="phoneNumber"
                 placeholder="Phone Number"
-                value={formData.PhoneNumber}
+                value={formData.phone}
                 onChange={handleChange}
               />
             </div>
             <div>
-              <label htmlFor="address">Billing Address</label>
+              <label htmlFor="address">Address</label>
               <input
                 type="text"
                 id="address"
-                name="Address"
+                name="address"
                 placeholder="Address"
-                value={formData.Address}
+                value={formData.address}
                 onChange={handleChange}
                 required
               />
             </div>
             <div>
-              <label htmlFor="postalCode"> Billing Postal Code</label>
+              <label htmlFor="postalCode">Postal Code</label>
               <input
                 type="text"
                 id="postalCode"
-                name="PostalCode"
+                name="postalCode"
                 placeholder="Postal Code"
-                value={formData.PostalCode}
+                value={formData.postalCode}
                 onChange={handleChange}
                 required
               />
             </div>
             <div>
-              <label htmlFor="city">Billing City</label>
+              <label htmlFor="city">City</label>
               <input
                 type="text"
                 id="city"
-                name="City"
+                name="city"
                 placeholder="City"
-                value={formData.City}
+                value={formData.city}
                 onChange={handleChange}
                 required
               />
             </div>
             <div>
-              <label htmlFor="reference">Billing Reference</label>
+              <label htmlFor="reference">Reference</label>
               <input
                 type="text"
                 id="reference"
-                name="Reference"
+                name="reference"
                 placeholder="Reference"
-                value={formData.Reference}
+                value={formData.reference}
                 onChange={handleChange}
               />
             </div>

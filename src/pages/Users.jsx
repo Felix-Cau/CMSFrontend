@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from "react";
 import ModalButton from "../partials/components/ModalButton";
-import AddMemberModal from "../partials/components/AddMemberModal";
-import EditMemberModal from "../partials/components/EditMemberModal";
+import AddMemberModal from "../partials/sections/AddMemberModal";
+import EditMemberModal from "../partials/sections/EditMemberModal";
 import { useUser } from "../contexts/UserContext";
 
 const Users = () => {
   const { users, getUsers, createUser, updateUser, deleteUser } = useUser();
 
-  const [showDropdownMenu, setDropDown] = useState(false);
+  const [openDropdownUserId, setOpenDropdownUserId] = useState(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const toggleDropdown = () => {
-    setDropDown((prev) => !prev);
+  const toggleDropdown = (userId) => {
+    setOpenDropdownUserId((prevId) => (prevId === userId ? null : userId));
   };
 
   const handleAdd = (formData) => {
     createUser(formData);
   };
 
-  const handleEdit = ({ user }) => {
-    setSelectedUser(user);
-    setIsEditModalOpen(true);
+  const handleEdit = (formData) => {
+    updateUser(formData);
   };
 
   const handleDelete = ({ user }) => {
@@ -49,12 +48,15 @@ const Users = () => {
         {users.length > 0 ? (
           users.map((user) => (
             <div key={user.id}>
-              <button type="button" onClick={toggleDropdown}>
-                test
+              <button type="button" onClick={() => toggleDropdown(user.id)}>
+                ...
               </button>
-              {showDropdownMenu && (
+              {openDropdownUserId === user.id && (
                 <div>
-                  <button onClick={() => handleEdit({ user })}>Edit</button>
+                  <button onClick={() => {
+                    setSelectedUser(user); 
+                    setIsEditModalOpen(true);
+                    }}>Edit</button>
                   <button onClick={() => handleDelete({ user })}>
                     Delete User
                   </button>
@@ -65,27 +67,28 @@ const Users = () => {
               <p>{user.jobTitle}</p>
               <p>{user.email}</p>
               <p>{user.phoneNumber}</p>
-              <p>{user.Role}</p>
+              <p>{user.role}</p>
             </div>
           ))
         ) : (
-          <p>No projects found.</p>
+          <p>No members found.</p>
         )}
       </div>
 
-      <AddMemberModal
+      {isAddModalOpen && (<AddMemberModal
         id="addMemberModal"
-        isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
         onSubmit={handleAdd}
       />
+      )}
 
-      <EditMemberModal
-        isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        onSubmit={handleEdit}
-        userData={selectedUser}
-      />
+      {isEditModalOpen && (
+        <EditMemberModal
+          onClose={() => setIsEditModalOpen(false)}
+          onSubmit={handleEdit}
+          userData={selectedUser}
+        />
+      )}
     </div>
   );
 };

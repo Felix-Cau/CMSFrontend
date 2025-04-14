@@ -1,46 +1,48 @@
 import React, { useState, useEffect } from "react";
 
-const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
+const EditMemberModal = ({ onClose, onSubmit, userData }) => {
   const [formData, setFormData] = useState({
-    Id: "",
-    ImageName: "",
-    ImageFile: null,
-    FirstName: "",
-    LastName: "",
-    Email: "",
-    JobTitle: "",
-    PhoneNumber: "",
-    Role: "",
-    Address: "",
-    PostalCode: "",
-    City: "",
+    id: "",
+    imageName: "",
+    imageFile: null,
+    firstName: "",
+    lastName: "",
+    email: "",
+    jobTitle: "",
+    phoneNumber: "",
+    role: "",
+    address: "",
+    postalCode: "",
+    city: "",
   });
 
   useEffect(() => {
     if (userData) {
       setFormData({
-        Id: userData.id,
-        ImageName: userData.imageName,
-        ImageFile: null,
-        FirstName: userData.firstName || "",
-        LastName: userData.lastName || "",
-        Email: userData.email || "",
-        JobTitle: userData.jobTitle || "",
-        PhoneNumber: userData.phoneNumber || "",
-        Role: userData.role || "",
-        Address: userData.address || "",
-        PostalCode: userData.postalCode || "",
-        City: userData.city || "",
+        id: userData.id,
+        imageName: userData.imageName,
+        imageFile: null,
+        firstName: userData.firstName || "",
+        lastName: userData.lastName || "",
+        email: userData.email || "",
+        jobTitle: userData.jobTitle || "",
+        phoneNumber: userData.phoneNumber || "",
+        role: userData.role || "",
+        address: userData.address || "",
+        postalCode: userData.postalCode || "",
+        city: userData.city || "",
       });
     }
   }, [userData]);
 
+  //AI generated
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  //AI generated
   const handleFileChange = (e) => {
-    setFormData({ ...formData, ImageFile: e.target.files[0] });
+    setFormData({ ...formData, imageFile: e.target.files[0] });
   };
 
   const handleSubmit = (e) => {
@@ -48,8 +50,6 @@ const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
     onSubmit(formData);
     onClose();
   };
-
-  if (!isOpen) return null;
 
   return (
     <section>
@@ -63,7 +63,7 @@ const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
               <input
                 type="file"
                 id="imageFile"
-                name="ImageFile"
+                name="imageFile"
                 onChange={handleFileChange}
               />
             </div>
@@ -72,9 +72,9 @@ const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
               <input
                 type="text"
                 id="firstName"
-                name="FirstName"
+                name="firstName"
                 placeholder="First Name"
-                value={formData.FirstName}
+                value={formData.firstName}
                 onChange={handleChange}
                 required
               />
@@ -84,9 +84,9 @@ const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
               <input
                 type="text"
                 id="lastName"
-                name="LastName"
+                name="lastName"
                 placeholder="Last Name"
-                value={formData.LastName}
+                value={formData.lastName}
                 onChange={handleChange}
                 required
               />
@@ -96,9 +96,9 @@ const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
               <input
                 type="text"
                 id="email"
-                name="Email"
+                name="email"
                 placeholder="Email"
-                value={formData.Email} 
+                value={formData.email} 
                 readOnly 
               />
             </div>
@@ -107,9 +107,9 @@ const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
               <input
                 type="text"
                 id="phoneNumber"
-                name="PhoneNumber"
+                name="phoneNumber"
                 placeholder="Phone Number"
-                value={formData.PhoneNumber}
+                value={formData.phoneNumber}
                 onChange={handleChange}
               />
             </div>
@@ -118,9 +118,9 @@ const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
               <input
                 type="text"
                 id="jobTitle"
-                name="JobTitle"
+                name="jobTitle"
                 placeholder="Job Title"
-                value={formData.JobTitle}
+                value={formData.jobTitle}
                 onChange={handleChange}
               />
             </div>
@@ -128,8 +128,8 @@ const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
               <label htmlFor="role">Member Role</label>
               <select
                 id="role"
-                name="Role"
-                value={formData.Role}
+                name="role"
+                value={formData.role}
                 onChange={handleChange}
                 required>
                 <option value="">Select Role</option>
@@ -142,9 +142,9 @@ const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
               <input
                 type="text"
                 id="address"
-                name="Address"
+                name="address"
                 placeholder="Address"
-                value={formData.Address}
+                value={formData.address}
                 onChange={handleChange}
               />
             </div>
@@ -153,9 +153,9 @@ const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
               <input
                 type="text"
                 id="postalCode"
-                name="PostalCode"
+                name="postalCode"
                 placeholder="Postal Code"
-                value={formData.PostalCode}
+                value={formData.postalCode}
                 onChange={handleChange}
               />
             </div>
@@ -164,9 +164,9 @@ const EditMemberModal = ({ isOpen, onClose, onSubmit, userData }) => {
               <input
                 type="text"
                 id="city"
-                name="City"
+                name="city"
                 placeholder="City"
-                value={formData.City}
+                value={formData.city}
                 onChange={handleChange}
               />
             </div>

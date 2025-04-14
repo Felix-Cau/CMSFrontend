@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useClients } from "../../contexts/ClientContext";
 import { useUser } from "../../contexts/UserContext";
 
-const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
+//After creating Add & Edit Member modals i asked ChatGPT for creating a similar ones for the rest. I then checked and changed what was needed to make sure it is ok.
+
+const AddProjectModal = ({ onClose, onSubmit }) => {
   const { clients, getClients } = useClients();
   const { users, getUsers } = useUser();
 
@@ -12,14 +14,14 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
   }, []);
 
   const [formData, setFormData] = useState({
-    ImageFile: null,
-    ProjectName: "",
-    ClientId: "",
-    Description: "",
-    StartDate: "",
-    EndDate: "",
-    ProjectOwnerId: "",
-    Budget: "",
+    imageFile: null,
+    projectName: "",
+    clientId: "",
+    description: "",
+    startDate: "",
+    endDate: "",
+    projectOwnerId: "",
+    budget: "",
   });
 
   const handleChange = (e) => {
@@ -32,7 +34,7 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
   const handleFileChange = (e) => {
     setFormData({
       ...formData,
-      ImageFile: e.target.files[0],
+      imageFile: e.target.files[0],
     });
   };
 
@@ -41,8 +43,6 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
     onSubmit(formData);
     onClose();
   };
-
-  if (!isOpen) return null;
 
   return (
     <section>
@@ -56,7 +56,7 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 type="file"
                 id="imageFile"
-                name="ImageFile"
+                name="imageFile"
                 onChange={handleFileChange}
               />
             </div>
@@ -65,9 +65,9 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 type="text"
                 id="projectName"
-                name="ProjectName"
+                name="projectName"
                 placeholder="Project Name"
-                value={formData.ProjectName}
+                value={formData.projectName}
                 onChange={handleChange}
                 required
               />
@@ -76,10 +76,11 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
               <label htmlFor="clientId">Client Name</label>
               <select
                 id="clientId"
-                name="ClientId"
-                value={formData.ClientId}
+                name="clientId"
+                value={formData.clientId}
                 onChange={handleChange}
-                required>
+                required
+              >
                 <option value="">Select a client</option>
                 {clients.map((client) => (
                   <option key={client.id} value={client.id}>
@@ -92,9 +93,9 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
               <label htmlFor="description">Description</label>
               <textarea
                 id="description"
-                name="Description"
+                name="description"
                 placeholder="Description"
-                value={formData.Description}
+                value={formData.description}
                 onChange={handleChange}
               />
             </div>
@@ -103,8 +104,8 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 type="date"
                 id="startDate"
-                name="StartDate"
-                value={formData.StartDate}
+                name="startDate"
+                value={formData.startDate}
                 onChange={handleChange}
                 required
               />
@@ -114,8 +115,8 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 type="date"
                 id="endDate"
-                name="EndDate"
-                value={formData.EndDate}
+                name="endDate"
+                value={formData.endDate}
                 onChange={handleChange}
               />
             </div>
@@ -123,14 +124,15 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
               <label htmlFor="projectOwnerId">Project Owner</label>
               <select
                 id="projectOwnerId"
-                name="ProjectOwnerId"
-                value={formData.ProjectOwnerId}
+                name="projectOwnerId"
+                value={formData.projectOwnerId}
                 onChange={handleChange}
-                required>
+                required
+              >
                 <option value="">Select a project owner</option>
                 {users.map((user) => (
                   <option key={user.id} value={user.id}>
-                    {user.Name}
+                    {user.name}
                   </option>
                 ))}
               </select>
@@ -140,9 +142,9 @@ const AddProjectModal = ({ isOpen, onClose, onSubmit }) => {
               <input
                 type="number"
                 id="budget"
-                name="Budget"
+                name="budget"
                 placeholder="Budget"
-                value={formData.Budget}
+                value={formData.budget}
                 onChange={handleChange}
                 step="0.01"
               />

@@ -1,17 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ModalButton from "../partials/components/ModalButton";
 import { useProj } from "../contexts/ProjectContext";
+import AddProjectModal from "../partials/sections/AddProjectModal";
+import EditProjectModal from "../partials/sections/EditProjectModal";
+
+//This JSX is created via taking the finished Users.jsx, feeding it to ChatGPT to get help to quicken the process. Then I checked it to make sure everything is ok and changed what was necissary.
 
 const Projects = () => {
-  const { projects, getProjects, deleteProject } = useProj();
+  const { projects, getProjects, createProject, updateProject, deleteProject } = useProj();
 
-  const [showDropdownMenu, setDropDown] = useState(false);
+  const [openDropdownProjectId, setOpenDropdownProjectId] = useState(null);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
 
-  const toggleDropdown = () => {
-    setDropDown((prev) => !prev);
+  const toggleDropdown = (projectId) => {
+    setOpenDropdownProjectId((prevId) => (prevId === projectId ? null : projectId));
   };
 
-  const handleEdit = ({ project }) => {};
+  const handleAdd = (formData) => {
+    createProject(formData);
+  };
+
+  const handleEdit = (formData) => {
+    updateProject(formData);
+  };
 
   const handleDelete = ({ project }) => {
     deleteProject(project.id);
@@ -25,7 +38,12 @@ const Projects = () => {
     <div id="projects">
       <div className="page-header">
         <h1 className="h2">Projects</h1>
-        <ModalButton type="add" target="#addProjectModal" text="Add Project" />
+        <ModalButton
+          type="add"
+          target="#addProjectModal"
+          text="Add Project"
+          onClick={() => setIsAddModalOpen(true)}
+        />
       </div>
 
       <div>
@@ -33,14 +51,21 @@ const Projects = () => {
           projects.map((project) => (
             <div key={project.id}>
               <h2>{project.projectName}</h2>
-              <button type="button" onClick={toggleDropdown}>
-                test
+              <button type="button" onClick={() => toggleDropdown(project.id)}>
+                ...
               </button>
-              {showDropdownMenu && (
+              {openDropdownProjectId === project.id && (
                 <div>
-                  <button onClick={() => handleEdit({ project })}>Edit</button>
+                  <button
+                    onClick={() => {
+                      setSelectedProject(project);
+                      setIsEditModalOpen(true);
+                    }}
+                  >
+                    Edit
+                  </button>
                   <button onClick={() => handleDelete({ project })}>
-                    Delete User
+                    Delete Project
                   </button>
                 </div>
               )}
@@ -53,6 +78,22 @@ const Projects = () => {
           <p>No projects found.</p>
         )}
       </div>
+
+      {isAddModalOpen && (
+        <AddProjectModal
+          id="addProjectModal"
+          onClose={() => setIsAddModalOpen(false)}
+          onSubmit={handleAdd}
+        />
+      )}
+
+      {isEditModalOpen && (
+        <EditProjectModal
+          onClose={() => setIsEditModalOpen(false)}
+          onSubmit={handleEdit}
+          projectData={selectedProject}
+        />
+      )}
     </div>
   );
 };
