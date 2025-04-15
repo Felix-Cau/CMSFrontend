@@ -46,7 +46,7 @@ const AddMemberModal = ({ onClose, onSubmit }) => {
 
   return (
     <section>
-      <div className="modal" id="addMemberModal">
+      <div className="modal" id="addModal">
         <div className="modal-content">
           <button onClick={onClose}>Close</button>
           <h2>Add Member</h2>

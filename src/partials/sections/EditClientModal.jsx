@@ -65,7 +65,7 @@ const EditClientModal = ({ onClose, onSubmit, clientData }) => {
 
   return (
     <section>
-      <div className="modal" id="editClientModal">
+      <div className="modal" id="editModal">
         <div className="modal-content">
           <button onClick={onClose}>Close</button>
           <h2>Edit Client</h2>

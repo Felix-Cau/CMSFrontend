@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -10,6 +11,8 @@ export const AuthProvider = ({ children }) => {
     const [adminApiKey, setAdminApiKey] = useState(null);
     const [loggedInUser, setLoggedInUser] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         const storedToken = localStorage.getItem('authToken');
@@ -95,17 +98,14 @@ export const AuthProvider = ({ children }) => {
     }
 
     const signOut = async () => {
-        const res = await fetch(`${apiUri}/signout`)
-        if (res.ok)
-        {
-            setToken(null);
-            setIsAdmin(false);
-            setAdminApiKey(null);
-            setLoggedInUser(null);
-            localStorage.removeItem('authToken');
-            localStorage.removeItem('adminApiKey');
-            localStorage.removeItem('user');
-        }
+        setToken(null);
+        setIsAdmin(false);
+        setAdminApiKey(null);
+        setLoggedInUser(null);
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('adminApiKey');
+        localStorage.removeItem('user');
+        navigate("/signin");
     }
 
     const authFetch = async (url, options = {}) => {

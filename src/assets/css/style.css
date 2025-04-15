@@ -712,13 +712,13 @@ section > .content {
     }
 
 /* custom modals */
-/* #addModal .modal-content {
+#addModal .modal-content {
     width: 450px;
 }
 
 #editModal .modal-content {
     width: 450px;
-} */
+}
 
 
 #signup,

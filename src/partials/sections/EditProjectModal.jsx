@@ -90,7 +90,7 @@ const EditProjectModal = ({ onClose, onSubmit, projectData }) => {
 
   return (
     <section>
-      <div className="modal" id="editProjectModal">
+      <div className="modal" id="editModal">
         <div className="modal-content">
           <button onClick={onClose}>Close</button>
           <h2>Edit Project</h2>

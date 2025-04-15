@@ -49,7 +49,7 @@ const EditMemberModal = ({ onClose, onSubmit, userData }) => {
     e.preventDefault();
 
     const data = new FormData();
-    
+
     data.append("id", formData.id);
     data.append("imageName", formData.imageName);
     if (formData.imageFile) {
@@ -71,7 +71,7 @@ const EditMemberModal = ({ onClose, onSubmit, userData }) => {
 
   return (
     <section>
-      <div className="modal" id="editMemberModal">
+      <div className="modal" id="editModal">
         <div className="modal-content">
           <button onClick={onClose}>Close</button>
           <h2>Edit User</h2>
