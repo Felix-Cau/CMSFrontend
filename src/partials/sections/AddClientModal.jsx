@@ -7,7 +7,7 @@ const AddClientModal = ({ onClose, onSubmit }) => {
     imageFile: null,
     clientName: "",
     clientEmail: "",
-    phone: "",
+    phoneNumber: "",
     address: "",
     postalCode: "",
     city: "",
@@ -24,7 +24,21 @@ const AddClientModal = ({ onClose, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+
+    const data = new FormData();
+
+    if (formData.imageFile) {
+      data.append("imageFile", formData.imageFile);
+    }
+    data.append("clientName", formData.clientName);
+    data.append("clientEmail", formData.clientEmail);
+    data.append("phoneNumber", formData.phoneNumber);
+    data.append("address", formData.address);
+    data.append("postalCode", formData.postalCode);
+    data.append("city", formData.city);
+    data.append("reference", formData.reference);
+  
+    onSubmit(data);
     onClose();
   };
 

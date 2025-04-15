@@ -22,12 +22,12 @@ const Projects = () => {
     createProject(formData);
   };
 
-  const handleEdit = (formData) => {
-    updateProject(formData);
+  const handleEdit = async (formData) => {
+    await updateProject(formData);
   };
 
-  const handleDelete = ({ project }) => {
-    deleteProject(project.id);
+  const handleDelete = async ({ project }) => {
+    await deleteProject(project.id);
   };
 
   useEffect(() => {

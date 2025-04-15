@@ -40,7 +40,19 @@ const AddProjectModal = ({ onClose, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+
+    const data = new FormData();
+
+    data.append("imageFile", formData.imageFile);
+    data.append("ProjectName", formData.projectName);
+    data.append("ClientId", formData.clientId);
+    data.append("Description", formData.description);
+    data.append("StartDate", formData.startDate);
+    data.append("EndDate", formData.endDate);
+    data.append("ProjectOwnerId", formData.projectOwnerId);
+    data.append("Budget", formData.budget);
+
+    onSubmit(data);
     onClose();
   };
 

@@ -158,7 +158,7 @@ function SignUp() {
               I Accept <span id="taCLabel">Terms and Conditions</span>
             </label>
             {formik.errors.termsAndConditions ? (
-              <div className="error">{formik.errors.confirmPassword}</div>
+              <div className="error">{formik.errors.termsAndConditions}</div>
             ) : null}
           </div>
           <button type="submit">Create Account</button>

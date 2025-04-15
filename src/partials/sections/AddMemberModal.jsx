@@ -24,7 +24,23 @@ const AddMemberModal = ({ onClose, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+
+    const data = new FormData();
+
+    if (formData.imageFile) {
+      data.append("imageFile", formData.imageFile);
+    }
+    data.append("firstName", formData.firstName);
+    data.append("lastName", formData.lastName);
+    data.append("email", formData.email);
+    data.append("phoneNumber", formData.phoneNumber);
+    data.append("jobTitle", formData.jobTitle);
+    data.append("role", formData.role);
+    data.append("address", formData.address);
+    data.append("postalCode", formData.postalCode);
+    data.append("city", formData.city);
+  
+    onSubmit(data);
     onClose();
   };
 
@@ -73,7 +89,7 @@ const AddMemberModal = ({ onClose, onSubmit }) => {
               <input
                 id="email"
                 type="text"
-                name="imail"
+                name="email"
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}

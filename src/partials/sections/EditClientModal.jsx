@@ -9,7 +9,7 @@ const EditClientModal = ({ onClose, onSubmit, clientData }) => {
     imageFile: null,
     clientName: "",
     email: "",
-    phone: "",
+    phoneNumber: "",
     address: "",
     postalCode: "",
     city: "",
@@ -24,7 +24,7 @@ const EditClientModal = ({ onClose, onSubmit, clientData }) => {
         imageFile: null,
         clientName: clientData.clientName || "",
         email: clientData.email || "",
-        phone: clientData.phone || "",
+        phoneNumber: clientData.phone || "",
         address: clientData.address || "",
         postalCode: clientData.postalCode || "",
         city: clientData.city || "",
@@ -43,7 +43,23 @@ const EditClientModal = ({ onClose, onSubmit, clientData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+
+    const data = new FormData();
+
+    data.append("id", formData.id);
+    data.append("imageName", formData.imageName);
+    if (formData.imageFile) {
+      data.append("newImageFile", formData.imageFile);
+    }
+    data.append("clientName", formData.clientName);
+    data.append("clientEmail", formData.email);
+    data.append("phoneNumber", formData.phoneNumber);
+    data.append("address", formData.address);
+    data.append("postalCode", formData.postalCode);
+    data.append("city", formData.city);
+    data.append("reference", formData.reference);
+
+    onSubmit(data);
     onClose();
   };
 
@@ -94,7 +110,7 @@ const EditClientModal = ({ onClose, onSubmit, clientData }) => {
                 id="phoneNumber"
                 name="phoneNumber"
                 placeholder="Phone Number"
-                value={formData.phone}
+                value={formData.phoneNumber}
                 onChange={handleChange}
               />
             </div>

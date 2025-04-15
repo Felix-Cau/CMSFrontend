@@ -28,7 +28,6 @@ export const ProjectProvider = ({children}) => {
                     return false;
                 }
                 
-                const data = await res.json();
                 await getProjects();
                 return true;
       
@@ -106,7 +105,6 @@ export const ProjectProvider = ({children}) => {
                     return false;
                 }
                 
-            const data = await res.json();
             await getProjects();
             return true;
         }
@@ -131,7 +129,6 @@ export const ProjectProvider = ({children}) => {
                     return false;
                 }
                 
-            const data = await res.json();
             await getProjects();
             return true;
         }

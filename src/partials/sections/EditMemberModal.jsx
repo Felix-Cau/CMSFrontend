@@ -47,7 +47,25 @@ const EditMemberModal = ({ onClose, onSubmit, userData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+
+    const data = new FormData();
+    
+    data.append("id", formData.id);
+    data.append("imageName", formData.imageName);
+    if (formData.imageFile) {
+      data.append("imageFile", formData.imageFile);
+    }
+    data.append("firstName", formData.firstName);
+    data.append("lastName", formData.lastName);
+    data.append("email", formData.email);
+    data.append("jobTitle", formData.jobTitle);
+    data.append("phoneNumber", formData.phoneNumber);
+    data.append("role", formData.role);
+    data.append("address", formData.address);
+    data.append("postalCode", formData.postalCode);
+    data.append("city", formData.city);
+  
+    onSubmit(data);
     onClose();
   };
 

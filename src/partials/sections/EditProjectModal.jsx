@@ -12,6 +12,7 @@ const EditProjectModal = ({ onClose, onSubmit, projectData }) => {
   const { statuses, getStatuses } = useProj();
 
   const [formData, setFormData] = useState({
+    id: "",
     imageFile: null,
     projectName: "",
     clientId: "",
@@ -32,10 +33,12 @@ const EditProjectModal = ({ onClose, onSubmit, projectData }) => {
   useEffect(() => {
     if (projectData) {
       setFormData({
+        id: projectData.id,
         imageFile: null,
         projectName: projectData.projectName || "",
         clientId: projectData.clientId || "",
         description: projectData.description || "",
+
         startDate: projectData.startDate
           ? projectData.startDate.substring(0, 10)
           : "",
@@ -65,7 +68,23 @@ const EditProjectModal = ({ onClose, onSubmit, projectData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+  
+    const data = new FormData();
+  
+    data.append("id", formData.id);
+    if (formData.imageFile) {
+      data.append("newImageFile", formData.imageFile);
+    }
+    data.append("projectName", formData.projectName);
+    data.append("clientId", formData.clientId);
+    data.append("description", formData.description);
+    data.append("startDate", formData.startDate);
+    data.append("endDate", formData.endDate);
+    data.append("projectOwnerId", formData.projectOwnerId);
+    data.append("budget", formData.budget);
+    data.append("statusId", formData.statusId);
+
+    onSubmit(data);
     onClose();
   };
 
